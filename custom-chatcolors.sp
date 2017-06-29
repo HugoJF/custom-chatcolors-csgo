@@ -6,8 +6,8 @@
 #define PLUGIN_VERSION		"3.1.2-CSGO"
 
 public Plugin:myinfo = {
-	name        = "[Source 2013] Custom Chat Colors",
-	author      = "Dr. McKay | Mitchell",
+	name        = "[Source 2013] Custom Chat Colors with more color tags",
+	author      = "Dr. McKay | Mitchell | de_nerdTV",
 	description = "Processes chat and provides colors for Source 2013 games",
 	version     = PLUGIN_VERSION,
 	url         = "http://www.doctormckay.com"
@@ -77,6 +77,26 @@ public OnPluginStart() {
 	LoadConfig();
 }
 
+new String:CTagLong[][] = {
+	"{default}",
+	"{darkred}",
+	"{purple}",
+	"{green}",
+	"{olive}",
+	"{lime}",
+	"{lightred}",
+	"{grey}",
+	"{yellow}",
+	"{bluegrey}",
+	"{lightblue}",
+	"{darkblue}",
+	"{grey2}",
+	"{orchid}",
+	"{lightred2}",  
+	"{orange}"
+};
+
+
 new String:CTag[][] = {
 	"{01}", //White
 	"{02}",
@@ -117,6 +137,7 @@ new String:CTagCode[][] = {
 
 stock CFormat(String:szMessage[], maxlength) {
 	for(new c = 0; c < sizeof(CTagCode); c++) {
+		ReplaceString(szMessage, maxlength, CTagLong[c], CTagCode[c]);
 		ReplaceString(szMessage, maxlength, CTag[c], CTagCode[c]);
 	}
 }
@@ -264,6 +285,7 @@ public Action:OnChatMessage(&author, Handle:recipients, String:name[], String:me
 	//new String:message[MAXLENGTH_MESSAGE];
 	//Format(message, sizeof(message), "%s", imessage);
 	CStrip(message, MAXLENGTH_MESSAGE);
+	
 	
 	if(CheckForward(author, message, CCC_NameColor)) {
 		if(StrEqual(usernameColor[author], "G", false)) {
