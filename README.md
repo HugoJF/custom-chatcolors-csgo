@@ -5,4 +5,10 @@ THIS IS NOT MY CODE (only some slight modifications to work with color names to 
 
 I'm only hosting here to track any changes and keep it in a 'safe' location
 
+TODO:
+ - Organize everything inside sourcemod's directory structure
+ - Add compiled file
+ - Add example config
+ - Add some documentation
+
 Source-code, original author, and everything can be found here: https://forums.alliedmods.net/showpost.php?p=2271350&postcount=1047
